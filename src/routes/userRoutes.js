@@ -6,10 +6,11 @@ const {
     updateUser,
     deleteUser
   } = require('../controllers/userController');
+const validateToken = require('../middleware/validateTokenHandler');
 
-router.get('/', getUsers);              // GET /api/users
-router.post('/', createUser);           // POST /api/users
-router.put('/:id', updateUser);         // PUT /api/users/:id
-router.delete('/:id', deleteUser);      // DELETE /api/users/:id
+router.get('/', validateToken, getUsers);              // GET /api/users
+router.post('/', validateToken, createUser);           // POST /api/users
+router.put('/:id', validateToken, updateUser);         // PUT /api/users/:id
+router.delete('/:id', validateToken, deleteUser);      // DELETE /api/users/:id
 
 module.exports = router;
